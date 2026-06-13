@@ -1,0 +1,33 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #f5f7fa;
+}
+
+#camera-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+video {
+  width: 100%;
+  border: 2px solid #185FA5;
+  border-radius: 8px;
+}
+
+.drag-box {
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  border: 3px solid red;
+  background: rgba(255, 0, 0, 0.1);
+  color: red;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+}
