@@ -99,3 +99,33 @@ document.getElementById("startBtn").addEventListener("click", () => {
   startCamera();
   startOCR();
 });
+
+function makeResizable(element) {
+  const handle = element.querySelector(".resize-handle");
+
+  let isResizing = false;
+
+  handle.addEventListener("touchstart", () => {
+    isResizing = true;
+  });
+
+  handle.addEventListener("touchmove", (e) => {
+    if (!isResizing) return;
+
+    const rect = element.getBoundingClientRect();
+    const container = document.getElementById("camera-container").getBoundingClientRect();
+
+    const newWidth = e.touches[0].clientX - rect.left;
+    const newHeight = e.touches[0].clientY - rect.top;
+
+    element.style.width = newWidth + "px";
+    element.style.height = newHeight + "px";
+  });
+
+  handle.addEventListener("touchend", () => {
+    isResizing = false;
+  });
+}
+
+makeResizable(document.getElementById("box1"));
+makeResizable(document.getElementById("box2"));
