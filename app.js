@@ -109,3 +109,67 @@ async function startOCR() {
 }
 
 startOCR();
+
+// ======== OCR処理 ========
+
+// Tesseractワーカー準備
+const worker = Tesseract.createWorker();
+
+async function startOCR() {
+  await worker.load();
+  await worker.loadLanguage("eng");
+  await worker.initialize("eng");
+
+  const video = document.getElementById("camera");
+  const capture = document.createElement("canvas");
+  const ctx = capture.getContext("2d");
+
+  let previousValue = null;
+
+  setInterval(async () => {
+    if (video.videoWidth === 0) return;
+
+    // canvas を動画サイズに合わせる
+    capture.width = video.videoWidth;
+    capture.height = video.videoHeight;
+
+    // 1フレーム描画
+    ctx.drawImage(video, 0, 0);
+
+    // 枠1の位置とサイズを取得
+    const box1 = document.getElementById("box1");
+    const rect = box1.getBoundingClientRect();
+    const container = document.getElementById("camera-container").getBoundingClientRect();
+
+    const x = rect.left - container.left;
+    const y = rect.top - container.top;
+    const w = box1.offsetWidth;
+    const h = box1.offsetHeight;
+
+    // 枠1の部分だけ切り出し
+    const imageData = ctx.getImageData(x, y, w, h);
+
+    // OCR実行
+    const { data } = await worker.recognize(imageData);
+    const text = data.text;
+
+    // 数字だけ抽出
+    const match = text.match(/\d+/);
+    if (!match) return;
+
+    const value = Number(match[0]);
+
+    // 表示
+    console.log("OCR:", value);
+
+    // 差分
+    if (previousValue !== null) {
+      console.log("差分:", value - previousValue);
+    }
+
+    previousValue = value;
+
+  }, 1000);
+}
+
+startOCR();
