@@ -4,6 +4,16 @@ body {
   background: #f5f7fa;
 }
 
+h1 {
+  margin-top: 10px;
+}
+
+#startBtn {
+  margin: 10px 0;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
 #camera-container {
   position: relative;
   width: 100%;
@@ -17,10 +27,11 @@ video {
   border-radius: 8px;
 }
 
+/* 枠共通 */
 .drag-box {
   position: absolute;
-  width: 120px;
-  height: 80px;
+  width: 140px;
+  height: 90px;
   border: 3px solid red;
   background: rgba(255, 0, 0, 0.1);
   color: red;
@@ -30,4 +41,21 @@ video {
   align-items: center;
   user-select: none;
   touch-action: none;
+}
+
+/* 初期位置（適当に中央付近） */
+#box1 {
+  left: 20px;
+  top: 40px;
+}
+
+#box2 {
+  right: 20px;
+  bottom: 40px;
+}
+
+#result-box {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
