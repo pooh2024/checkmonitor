@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カメラ＋枠テスト</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>カメラ＋枠テスト</h1>
+
+  <div id="camera-container">
+    <video id="camera" autoplay playsinline></video>
+
+    <!-- 枠1（OCR用） -->
+    <div id="box1" class="drag-box">枠1</div>
+
+    <!-- 枠2（変化検知用） -->
+    <div id="box2" class="drag-box">枠2</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
