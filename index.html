@@ -5,19 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カメラ＋枠テスト</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
 
 <body>
   <h1>カメラ＋枠テスト</h1>
 
+  <button id="startBtn">カメラ開始＋解析開始</button>
+
   <div id="camera-container">
     <video id="camera" autoplay playsinline></video>
 
-    <!-- 枠1（OCR用） -->
+    <!-- 枠1（数値OCR用） -->
     <div id="box1" class="drag-box">枠1</div>
 
-    <!-- 枠2（変化検知用） -->
+    <!-- 枠2（変化検知用・今はまだ見た目だけ） -->
     <div id="box2" class="drag-box">枠2</div>
+  </div>
+
+  <div id="result-box">
+    <p>現在値：<span id="current">--</span></p>
+    <p>前回値：<span id="previous">--</span></p>
+    <p>差分：<span id="diff">--</span></p>
   </div>
 
   <script src="app.js"></script>
